@@ -83,20 +83,20 @@ body {
 .contact-item:last-child { border-bottom: none; }
 .contact-icon {
   color: #1D9E75;
-  font-size: 18px;
+  font-size: 19px;
   flex-shrink: 0;
   width: 22px;
   text-align: center;
   margin-top: 2px;
 }
 .contact-value {
-  font-size: 14.5px;
+  font-size: 16px;
   font-weight: 500;
   color: #111;
   line-height: 1.4;
 }
 .contact-label {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #ABABAB;
   margin-top: 2px;
 }
@@ -146,7 +146,7 @@ body {
   bottom: 0; left: 0; right: 0;
   background: #fff;
   border-top: 1px solid #EBEBEB;
-  padding: 18px 24px 32px;
+  padding: 18px 24px 36px;
   box-shadow: 0 -4px 24px rgba(0,0,0,0.10);
   z-index: 100;
   animation: slideUp 0.25s ease;
@@ -161,19 +161,14 @@ body {
   background: none; border: none;
   font-size: 22px; color: #ABABAB;
   cursor: pointer; padding: 4px;
-  font-family: inherit;
-  line-height: 1;
+  font-family: inherit; line-height: 1;
 }
 .ios-banner-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 8px;
+  font-size: 15px; font-weight: 700;
+  color: #111; margin-bottom: 8px;
 }
 .ios-banner-text {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
+  font-size: 14px; color: #555; line-height: 1.6;
 }
 
 .page-footer {
@@ -239,12 +234,13 @@ body {
   </ul>
 
   <div class="actions">
-    <button class="btn btn-primary" onclick="saveContact()">
+    <!-- Direct link to static .vcf — iOS Safari opens this in Contacts natively -->
+    <a class="btn btn-primary" id="js-btn-save" href="goekhan-budak.vcf">
       <i class="ti ti-user-plus"></i>
       Kontakt speichern
-    </button>
+    </a>
     <div class="btn-row">
-      <a class="btn btn-secondary" id="js-btn-call" href="tel:+49765634801">
+      <a class="btn btn-secondary" id="js-btn-call" href="tel:+4976563480">
         <i class="ti ti-phone"></i>
         Anrufen
       </a>
@@ -271,12 +267,19 @@ body {
 </div>
 
 <script>
+// ─────────────────────────────────────────────────────────
+//  EMPLOYEES
+//  Add a new .vcf file to the repo for each new employee,
+//  then add an entry here.
+//  URL: index.html?e=goekhan-budak
+// ─────────────────────────────────────────────────────────
 const EMPLOYEES = {
   'goekhan-budak': {
     name:  'Gökhan Budak',
     role:  'Geschäftsführer',
     phone: '+49 76 563 48 01',
-    email: 'g.budak@3c-ulm.de'
+    email: 'g.budak@3c-ulm.de',
+    vcf:   'goekhan-budak.vcf'
   }
 };
 
@@ -293,6 +296,7 @@ document.getElementById('js-link-phone').href   = 'tel:' + tel;
 document.getElementById('js-link-email').href   = 'mailto:' + emp.email;
 document.getElementById('js-btn-call').href     = 'tel:' + tel;
 document.getElementById('js-btn-email').href    = 'mailto:' + emp.email;
+document.getElementById('js-btn-save').href     = emp.vcf;
 
 // Service worker
 if ('serviceWorker' in navigator) {
@@ -328,54 +332,6 @@ function installApp() {
   } else if (isIOS && !isStandalone) {
     document.getElementById('ios-banner').style.display = 'block';
   }
-}
-
-// ── Save contact ──
-async function saveContact() {
-  const parts    = emp.name.split(' ');
-  const lastName = parts[parts.length - 1];
-  const first    = parts.slice(0, -1).join(' ');
-  const filename = emp.name.replace(/\s+/g, '_') + '.vcf';
-
-  const vcf = [
-    'BEGIN:VCARD',
-    'VERSION:3.0',
-    'FN:'    + emp.name,
-    'N:'     + lastName + ';' + first + ';;;',
-    'ORG:RI.BU GmbH;Car Competence Center',
-    'TITLE:' + emp.role,
-    'TEL;TYPE=WORK,VOICE:' + emp.phone,
-    'EMAIL;TYPE=WORK:' + emp.email,
-    'ADR;TYPE=WORK:;;Max-Eyth-Stra\u00dfe 41/3;Neu-Ulm;;89231;Deutschland',
-    'URL:https://www.3c-ulm.de',
-    'END:VCARD'
-  ].join('\r\n');
-
-  const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
-  const file = new File([blob], filename, { type: 'text/vcard' });
-
-  // 1. Web Share API — Android Chrome, Samsung Browser
-  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-    try {
-      await navigator.share({ files: [file], title: emp.name });
-      return;
-    } catch(e) {
-      if (e.name === 'AbortError') return;
-    }
-  }
-
-  const url = URL.createObjectURL(blob);
-  const a   = document.createElement('a');
-  a.href    = url;
-
-  // 2. iOS Safari — no 'download' attr so Safari opens .vcf natively → Contacts
-  // 3. Desktop  — with 'download' attr → saves file
-  if (!isIOS) a.download = filename;
-
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 </script>
 </body>
