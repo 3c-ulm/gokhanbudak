@@ -10,6 +10,9 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <title>3C Experts – Gökhan Budak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,7 +20,7 @@
 html { border-top: 3px solid #1D9E75; }
 
 body {
-  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Nunito Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif;
   background: #fff;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -43,22 +46,22 @@ body {
 .logo-wrap img { width: 190px; height: auto; }
 
 .identity {
-  padding: 26px 0 20px;
+  padding: 28px 0 22px;
   text-align: center;
   border-bottom: 1px solid #EBEBEB;
 }
 .person-name {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
   color: #111;
   letter-spacing: -0.5px;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 .person-role {
-  font-size: 10.5px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: #1D9E75;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
 }
 
@@ -71,7 +74,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  padding: 13px 0;
+  padding: 14px 0;
   border-bottom: 1px solid #F4F4F4;
   text-decoration: none;
   color: inherit;
@@ -84,10 +87,19 @@ body {
   flex-shrink: 0;
   width: 22px;
   text-align: center;
-  margin-top: 1px;
+  margin-top: 2px;
 }
-.contact-value { font-size: 14px; color: #111; line-height: 1.4; }
-.contact-label { font-size: 11px; color: #ABABAB; margin-top: 2px; }
+.contact-value {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #111;
+  line-height: 1.4;
+}
+.contact-label {
+  font-size: 11px;
+  color: #ABABAB;
+  margin-top: 2px;
+}
 
 .actions {
   padding: 24px 0 32px;
@@ -103,7 +115,7 @@ body {
   padding: 15px 20px;
   border-radius: 12px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -122,19 +134,20 @@ body {
   font-size: 13px;
   padding: 10px 20px;
   gap: 7px;
+  font-weight: 500;
 }
 .btn-ghost i { font-size: 15px; }
 .btn i { font-size: 17px; }
 
-/* ── iOS install banner ── */
+/* iOS install banner */
 .ios-banner {
   display: none;
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: #fff;
   border-top: 1px solid #EBEBEB;
-  padding: 16px 24px 28px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.10);
+  padding: 18px 24px 32px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.10);
   z-index: 100;
   animation: slideUp 0.25s ease;
 }
@@ -145,46 +158,22 @@ body {
 .ios-banner-close {
   position: absolute;
   top: 12px; right: 16px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #ABABAB;
-  cursor: pointer;
-  padding: 4px;
+  background: none; border: none;
+  font-size: 22px; color: #ABABAB;
+  cursor: pointer; padding: 4px;
   font-family: inherit;
+  line-height: 1;
 }
 .ios-banner-title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: #111;
   margin-bottom: 8px;
 }
 .ios-banner-text {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.55;
-}
-.ios-banner-text .share-icon {
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  background: #007AFF;
-  border-radius: 5px;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
-  margin: 0 2px;
-}
-.ios-banner-text .share-icon::after {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 10px;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #fff;
-  border-top: 2px solid #fff;
-  position: absolute;
-  top: 4px; left: 5px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
 }
 
 .page-footer {
@@ -192,7 +181,7 @@ body {
   text-align: center;
   font-size: 10.5px;
   color: #C8C8C8;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   width: 100%;
 }
@@ -212,10 +201,10 @@ body {
 
   <ul class="contact-list">
     <li>
-      <a class="contact-item" id="js-link-phone" href="tel:+41765634801">
+      <a class="contact-item" id="js-link-phone" href="tel:+4976563480">
         <i class="ti ti-phone contact-icon" aria-hidden="true"></i>
-        <div class="contact-content">
-          <div class="contact-value" id="js-phone">+41 76 563 48 01</div>
+        <div>
+          <div class="contact-value" id="js-phone">+49 76 563 48 01</div>
           <div class="contact-label">Telefon</div>
         </div>
       </a>
@@ -223,7 +212,7 @@ body {
     <li>
       <a class="contact-item" id="js-link-email" href="mailto:g.budak@3c-ulm.de">
         <i class="ti ti-mail contact-icon" aria-hidden="true"></i>
-        <div class="contact-content">
+        <div>
           <div class="contact-value" id="js-email">g.budak@3c-ulm.de</div>
           <div class="contact-label">E-Mail</div>
         </div>
@@ -232,7 +221,7 @@ body {
     <li>
       <a class="contact-item" href="https://maps.google.com/?q=Max-Eyth-Stra%C3%9Fe+41%2F3+89231+Neu-Ulm" target="_blank" rel="noopener">
         <i class="ti ti-map-pin contact-icon" aria-hidden="true"></i>
-        <div class="contact-content">
+        <div>
           <div class="contact-value">Max-Eyth-Straße 41/3</div>
           <div class="contact-label">89231 Neu-Ulm</div>
         </div>
@@ -241,7 +230,7 @@ body {
     <li>
       <a class="contact-item" href="https://www.3c-ulm.de" target="_blank" rel="noopener">
         <i class="ti ti-world contact-icon" aria-hidden="true"></i>
-        <div class="contact-content">
+        <div>
           <div class="contact-value">www.3c-ulm.de</div>
           <div class="contact-label">Website</div>
         </div>
@@ -255,7 +244,7 @@ body {
       Kontakt speichern
     </button>
     <div class="btn-row">
-      <a class="btn btn-secondary" id="js-btn-call" href="tel:+41765634801">
+      <a class="btn btn-secondary" id="js-btn-call" href="tel:+49765634801">
         <i class="ti ti-phone"></i>
         Anrufen
       </a>
@@ -273,25 +262,20 @@ body {
 
 <div class="page-footer">Car Competence Center &middot; RI.BU GmbH</div>
 
-<!-- iOS install instructions banner -->
 <div class="ios-banner" id="ios-banner">
   <button class="ios-banner-close" onclick="document.getElementById('ios-banner').style.display='none'" aria-label="Schließen">×</button>
   <div class="ios-banner-title">Zur Startseite hinzufügen</div>
   <div class="ios-banner-text">
-    Tippe auf <span class="share-icon" aria-label="Teilen-Symbol"></span> unten in der Browserleiste, dann wähle <strong>„Zum Home-Bildschirm"</strong>.
+    Tippe auf das <strong>Teilen-Symbol</strong> unten in Safari, dann wähle <strong>„Zum Home-Bildschirm"</strong>.
   </div>
 </div>
 
 <script>
-// ─────────────────────────────────────────────────────────
-//  EMPLOYEES  –  add entries here, one block per person
-//  URL: index.html?e=goekhan-budak
-// ─────────────────────────────────────────────────────────
 const EMPLOYEES = {
   'goekhan-budak': {
     name:  'Gökhan Budak',
     role:  'Geschäftsführer',
-    phone: '+41 76 563 48 01',
+    phone: '+49 76 563 48 01',
     email: 'g.budak@3c-ulm.de'
   }
 };
@@ -310,12 +294,12 @@ document.getElementById('js-link-email').href   = 'mailto:' + emp.email;
 document.getElementById('js-btn-call').href     = 'tel:' + tel;
 document.getElementById('js-btn-email').href    = 'mailto:' + emp.email;
 
-// ── Service worker ──
+// Service worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
-// ── Android: intercept install prompt ──
+// Android install prompt
 let deferredPrompt = null;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
@@ -327,27 +311,23 @@ window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
 });
 
-// ── iOS: detect and show banner ──
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = ('standalone' in navigator) && navigator.standalone;
 
+if (isIOS && !isStandalone) {
+  document.getElementById('js-btn-install').style.display = 'flex';
+}
+
 function installApp() {
   if (deferredPrompt) {
-    // Android
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then(() => {
       deferredPrompt = null;
       document.getElementById('js-btn-install').style.display = 'none';
     });
   } else if (isIOS && !isStandalone) {
-    // iOS
     document.getElementById('ios-banner').style.display = 'block';
   }
-}
-
-// Show install button on iOS too (if not already installed)
-if (isIOS && !isStandalone) {
-  document.getElementById('js-btn-install').style.display = 'flex';
 }
 
 // ── Save contact ──
@@ -355,6 +335,7 @@ async function saveContact() {
   const parts    = emp.name.split(' ');
   const lastName = parts[parts.length - 1];
   const first    = parts.slice(0, -1).join(' ');
+  const filename = emp.name.replace(/\s+/g, '_') + '.vcf';
 
   const vcf = [
     'BEGIN:VCARD',
@@ -371,18 +352,30 @@ async function saveContact() {
   ].join('\r\n');
 
   const blob = new Blob([vcf], { type: 'text/vcard;charset=utf-8' });
-  const file = new File([blob], emp.name.replace(/\s+/g, '_') + '.vcf', { type: 'text/vcard' });
+  const file = new File([blob], filename, { type: 'text/vcard' });
 
+  // 1. Web Share API — Android Chrome, Samsung Browser
   if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-    try { await navigator.share({ files: [file], title: emp.name }); return; }
-    catch (e) { if (e.name === 'AbortError') return; }
+    try {
+      await navigator.share({ files: [file], title: emp.name });
+      return;
+    } catch(e) {
+      if (e.name === 'AbortError') return;
+    }
   }
 
   const url = URL.createObjectURL(blob);
   const a   = document.createElement('a');
-  a.href = url; a.download = file.name;
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a); URL.revokeObjectURL(url);
+  a.href    = url;
+
+  // 2. iOS Safari — no 'download' attr so Safari opens .vcf natively → Contacts
+  // 3. Desktop  — with 'download' attr → saves file
+  if (!isIOS) a.download = filename;
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 </script>
 </body>
