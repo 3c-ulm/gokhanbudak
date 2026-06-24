@@ -1,6 +1,5 @@
-// Bump this version string whenever you deploy changes — e.g. 'v3', 'v4' …
-const CACHE = 'v2';
-const ASSETS = ['./', './index.html', './icon-192.png', './icon-512.png'];
+const CACHE = 'v3';
+const ASSETS = ['./', './index.html', './icon-192.png', './icon-512.png', './goekhan-budak.vcf'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -8,7 +7,6 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-  // Delete all old caches
   e.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
