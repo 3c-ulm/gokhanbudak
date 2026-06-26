@@ -17,6 +17,34 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* WhatsApp button */
+.btn-whatsapp { background: #25D366; color: #fff; }
+
+/* ── Entrance animations ── */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.logo-wrap  { animation: fadeInDown 0.4s ease both; }
+.identity   { animation: fadeIn    0.4s 0.12s ease both; }
+.contact-list li:nth-child(1) { animation: fadeInUp 0.35s 0.20s ease both; }
+.contact-list li:nth-child(2) { animation: fadeInUp 0.35s 0.27s ease both; }
+.contact-list li:nth-child(3) { animation: fadeInUp 0.35s 0.34s ease both; }
+.contact-list li:nth-child(4) { animation: fadeInUp 0.35s 0.41s ease both; }
+.actions > *:nth-child(1) { animation: fadeInUp 0.35s 0.50s ease both; }
+.actions > *:nth-child(2) { animation: fadeInUp 0.35s 0.57s ease both; }
+.actions > *:nth-child(3) { animation: fadeInUp 0.35s 0.62s ease both; }
+.actions > *:nth-child(4) { animation: fadeInUp 0.35s 0.67s ease both; }
+
 body {
   font-family: 'Nunito Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif;
   background: #fff;
@@ -237,6 +265,10 @@ body {
       <i class="ti ti-user-plus"></i>
       Kontakt speichern
     </a>
+    <a class="btn btn-whatsapp" id="js-btn-whatsapp" href="#" style="display:none">
+      <i class="ti ti-brand-whatsapp"></i>
+      WhatsApp schreiben
+    </a>
     <div class="btn-row">
       <a class="btn btn-secondary" id="js-btn-call" href="tel:+4976563480">
         <i class="ti ti-phone"></i>
@@ -271,15 +303,18 @@ body {
 //  then add an entry here.
 //  URL: index.html?e=goekhan-budak
 // ─────────────────────────────────────────────────────────
+
 const EMPLOYEES = {
   'goekhan-budak': {
-    name:  'Gökhan Budak',
-    role:  'Geschäftsführer',
-    phone: '+49 76 563 48 01',
-    email: 'g.budak@3c-ulm.de',
-    vcf:   'goekhan-budak.vcf'
+    name:     'Gökhan Budak',
+    role:     'Geschäftsführer',
+    phone:    '+49 76 563 48 01',
+    email:    'g.budak@3c-ulm.de',
+    whatsapp: '4976563480',   // ← ADD (no + sign, for wa.me)
+    vcf:      'goekhan-budak.vcf'
   }
 };
+  
 
 const key = new URLSearchParams(window.location.search).get('e')
          || Object.keys(EMPLOYEES)[0];
@@ -294,7 +329,10 @@ document.getElementById('js-link-phone').href   = 'tel:' + tel;
 document.getElementById('js-link-email').href   = 'mailto:' + emp.email;
 document.getElementById('js-btn-call').href     = 'tel:' + tel;
 document.getElementById('js-btn-email').href    = 'mailto:' + emp.email;
-document.getElementById('js-btn-save').href     = emp.vcf;
+document.getElementById('js-btn-save').href = emp.vcf;
+
+const waBtn = document.getElementById('js-btn-whatsapp');
+if (emp.whatsapp) { waBtn.href = 'https://wa.me/' + emp.whatsapp; waBtn.style.display = 'flex'; }
 
 // Service worker
 if ('serviceWorker' in navigator) {
