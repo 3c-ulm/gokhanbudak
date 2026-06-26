@@ -1,4 +1,4 @@
-const CACHE = 'v5';
+const CACHE = 'v6';
 const ASSETS = ['./', './index.html', './icon-192.png', './icon-512.png', './goekhan-budak.vcf'];
 
 self.addEventListener('install', e => {
