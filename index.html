@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -287,6 +288,10 @@ body {
     <a id="js-btn-whatsapp" href="#" style="display:none" aria-label="WhatsApp">
   <i class="ti ti-brand-whatsapp"></i>
 </a>
+    <button class="btn btn-secondary" id="js-btn-share" onclick="openShare()">
+      <i class="ti ti-share"></i>
+      Teilen
+    </button>
     <div class="btn-row">
       <a class="btn btn-secondary" id="js-btn-call" href="tel:+4976563480">
         <i class="ti ti-phone"></i>
@@ -305,6 +310,16 @@ body {
 </div>
 
 <div class="page-footer">Car Competence Center &middot; RI.BU GmbH</div>
+
+<div id="share-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:32px 28px;max-width:320px;width:90%;text-align:center;">
+    <div style="font-size:17px;font-weight:700;color:#111;margin-bottom:6px;">Karte teilen</div>
+    <div style="font-size:13px;color:#ABABAB;margin-bottom:20px;">QR-Code scannen zum Öffnen</div>
+    <div id="qr-code" style="display:flex;justify-content:center;margin-bottom:20px;"></div>
+    <div style="font-size:12px;color:#ABABAB;word-break:break-all;margin-bottom:20px;" id="share-url"></div>
+    <button onclick="closeShare()" style="width:100%;padding:13px;border-radius:12px;background:#F3F3F3;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;">Schließen</button>
+  </div>
+</div>
 
 <div class="ios-banner" id="ios-banner">
   <button class="ios-banner-close" onclick="document.getElementById('ios-banner').style.display='none'" aria-label="Schließen">×</button>
@@ -375,6 +390,22 @@ const isStandalone = ('standalone' in navigator) && navigator.standalone;
 if (isIOS && !isStandalone) {
   document.getElementById('js-btn-install').style.display = 'flex';
 }
+
+function openShare() {
+  const url = window.location.href;
+  document.getElementById('share-url').textContent = url;
+  const container = document.getElementById('qr-code');
+  container.innerHTML = '';
+  new QRCode(container, { text: url, width: 200, height: 200, correctLevel: QRCode.CorrectLevel.M });
+  const modal = document.getElementById('share-modal');
+  modal.style.display = 'flex';
+}
+function closeShare() {
+  document.getElementById('share-modal').style.display = 'none';
+}
+document.getElementById('share-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeShare();
+});
 
 function installApp() {
   if (deferredPrompt) {
