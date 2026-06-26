@@ -288,10 +288,6 @@ body {
     <a id="js-btn-whatsapp" href="#" style="display:none" aria-label="WhatsApp">
   <i class="ti ti-brand-whatsapp"></i>
 </a>
-    <button class="btn btn-secondary" id="js-btn-share" onclick="openShare()">
-      <i class="ti ti-share"></i>
-      Teilen
-    </button>
     <div class="btn-row">
       <a class="btn btn-secondary" id="js-btn-call" href="tel:+4976563480">
         <i class="ti ti-phone"></i>
@@ -305,6 +301,10 @@ body {
     <button class="btn btn-ghost" id="js-btn-install" style="display:none" onclick="installApp()">
       <i class="ti ti-home-plus"></i>
       Zur Startseite hinzufügen
+    </button>
+    <button class="btn btn-secondary" id="js-btn-share" onclick="openShare()">
+      <i class="ti ti-share"></i>
+      Teilen
     </button>
   </div>
 </div>
@@ -341,9 +341,9 @@ const EMPLOYEES = {
   'goekhan-budak': {
     name:     'Gökhan Budak',
     role:     'Geschäftsführer',
-    phone:    '+49 76 563 48 01',
+    phone:    '+49 170 4694340',
     email:    'g.budak@3c-ulm.de',
-    whatsapp: '4976563480',   // ← ADD (no + sign, for wa.me)
+    whatsapp: '491704694340',   // ← ADD (no + sign, for wa.me)
     vcf:      'goekhan-budak.vcf'
   }
 };
