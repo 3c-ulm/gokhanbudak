@@ -17,9 +17,6 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* WhatsApp button */
-.btn-whatsapp { background: #25D366; color: #fff; }
-
 /* ── Entrance animations ── */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-16px); }
@@ -206,6 +203,28 @@ body {
   text-transform: uppercase;
   width: 100%;
 }
+
+#js-btn-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.12s ease;
+  z-index: 50;
+}
+#js-btn-whatsapp:active { opacity: 0.75; }
+
 </style>
 </head>
 <body>
@@ -265,10 +284,9 @@ body {
       <i class="ti ti-user-plus"></i>
       Kontakt speichern
     </a>
-    <a class="btn btn-whatsapp" id="js-btn-whatsapp" href="#" style="display:none">
-      <i class="ti ti-brand-whatsapp"></i>
-      WhatsApp schreiben
-    </a>
+    <a id="js-btn-whatsapp" href="#" style="display:none" aria-label="WhatsApp">
+  <i class="ti ti-brand-whatsapp"></i>
+</a>
     <div class="btn-row">
       <a class="btn btn-secondary" id="js-btn-call" href="tel:+4976563480">
         <i class="ti ti-phone"></i>
